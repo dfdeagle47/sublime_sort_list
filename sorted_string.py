@@ -46,7 +46,12 @@ def sorted_string(s, start_list_chars, end_list_chars):
     try:
         l = json.loads('[' + s.replace(sq, dq) + ']') # `json.loads` chokes on single quotes
     except:
-        raise ValueError("List could not be parsed")
+        try:
+            l = [ss.strip() for ss in s.split(',')]
+            s = ', '.join(sorted(l))
+            return first + s + trailing_comma + last
+        except:
+            raise ValueError("List could not be parsed")
 
     s = str(sorted(l))[1:-1]
     if quote_char is dq: # casting the list to a string wraps strings in single quotes
