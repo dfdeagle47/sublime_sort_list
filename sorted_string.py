@@ -48,7 +48,7 @@ def sorted_string(s, start_list_chars, end_list_chars):
     except:
         try:
             l = [ss.strip() for ss in s.split(',')]
-            s = ', '.join(sorted(l))
+            s = ', '.join(sorted(l), key=lambda s: s.lower())
             return first + s + trailing_comma + last
         except:
             raise ValueError("List could not be parsed")
